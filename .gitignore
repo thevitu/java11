@@ -1,3 +1,7 @@
 *.project
 *.prefs
 *.classpath
+/creature/animal/target/
+/creature/zoo/target/
+/creature/pet/target/
+/creature/wild/target/
