@@ -1,6 +1,8 @@
 package com.thevitu.creature.pet;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
@@ -62,6 +64,15 @@ public class DogExhibitionTest {
 	}
 
 	@Test
+	public void getRegisteredDogsByBreed() {
+		DogExhibition dogExhibition = new DogExhibition();
+		dogExhibition.registerDogs(dogs);
+		List<Dog> scotts = dogExhibition.getRegisteredDogsByBreed("Scottish Terrier");
+		assertEquals(2, scotts.size());
+		assertTrue(scotts.stream().allMatch(d -> "Scottish Terrier".equals(d.getBreed())));
+	}
+	
+	@Test
 	public void testViewSmallDog() {
 		DogExhibition dogExhibition = new DogExhibition();
 		dogExhibition.registerDogs(dogs);
@@ -76,5 +87,5 @@ public class DogExhibitionTest {
 		dogExhibition.registerJudge("Patrick");
 		assertEquals(6, dogExhibition.scoreDogs().size());
 	}
-	
+
 }

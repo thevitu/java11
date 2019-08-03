@@ -16,6 +16,7 @@ public class CageTest {
 	public void testPut() {
 		try {
 			this.cage.put(new Animal() {
+				@Override
 				public String getDescription() {
 					return null;
 				}			

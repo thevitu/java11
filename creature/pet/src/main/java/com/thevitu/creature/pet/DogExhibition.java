@@ -1,12 +1,12 @@
 package com.thevitu.creature.pet;
 
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class DogExhibition {
 
@@ -48,9 +48,20 @@ public class DogExhibition {
 	public List<String> viewAllDogs() {
 		return this.dogs.stream().map(d -> format("%s - %s", d.getName(), d.getBreed()))
 				.peek(System.out::println)
-				.collect(Collectors.toList());
+				.collect(toList());
 	}
 
+	/**
+	 * list of registered dogs by breed
+	 * 
+	 * @param breed
+	 * 
+	 * @return dogs list
+	 */
+	public List<Dog> getRegisteredDogsByBreed(String breed) {
+		return this.dogs.stream().filter(d -> breed.equals(d.getBreed())).collect(toList());
+	}
+	
 	/**
 	 * view small dog
 	 * 
@@ -65,13 +76,13 @@ public class DogExhibition {
 	 * 
 	 * @return list of scores
 	 */
-	public List<String> scoreDogs() {
+	public List<String> scoreDogs() {		
 		return viewAllDogs().stream()
-		 	.map(d -> judges.stream().map(j -> format("%s / Judge %s score ", d, j)).collect(Collectors.toList()))
+		 	.map(d -> judges.stream().map(j -> format("%s / Judge %s score ", d, j)).collect(toList()))
 		 	.flatMap(List::stream)
 		 	.map(d -> d.concat(String.valueOf((new Random()).nextInt(10))))
 		 	.peek(System.out::println)
-			.collect(Collectors.toList());
+			.collect(toList());
 	}
 
 }

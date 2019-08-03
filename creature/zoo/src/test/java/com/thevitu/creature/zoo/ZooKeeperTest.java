@@ -10,6 +10,7 @@ public class ZooKeeperTest {
 	
 	@Test
 	public void testGetMessage() {
+		assertEquals("Don't feed the animals", ((ZooKeeper) (a, f) -> {}).getMessage());		
 		assertEquals("Don't feed the animals", (new ZooKeeper() {			
 			@Override
 			public void feedAnimal(Animal animal, Food food) {
